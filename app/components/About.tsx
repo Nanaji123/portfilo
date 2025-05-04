@@ -102,7 +102,7 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-16 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section id="about" className="py-24 pt-32 md:pt-36 px-4 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -46,7 +46,7 @@ const Hero = () => {
   }, [currentTitle, currentIndex, isDeleting, titles])
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16 px-4 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center pt-28 md:pt-24 pb-16 px-4 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute top-40 right-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
