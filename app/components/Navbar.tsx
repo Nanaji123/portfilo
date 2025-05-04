@@ -31,7 +31,7 @@ const Navbar = () => {
       <motion.div 
         className={`rounded-2xl transition-all duration-500 ease-in-out ${
           scrolled 
-            ? 'bg-black/90 backdrop-blur-lg shadow-xl shadow-black/20 w-[70%]' 
+            ? 'bg-black/90 backdrop-blur-lg shadow-xl shadow-black/20 md:w-[70%]' 
             : 'bg-black/80 backdrop-blur-md w-full'
         }`}
         initial={false}
@@ -117,7 +117,7 @@ const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : -20 }}
         transition={{ duration: 0.2 }}
-        className={`md:hidden absolute top-full left-1/2 transform -translate-x-1/2 w-[70%] ${isMenuOpen ? 'block' : 'hidden'}`}
+        className={`md:hidden absolute top-full left-1/2 transform -translate-x-1/2 w-full px-4 ${isMenuOpen ? 'block' : 'hidden'}`}
       >
         <div className="mt-4 rounded-2xl bg-black/90 backdrop-blur-lg shadow-xl shadow-black/20 px-2 py-3">
           {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (

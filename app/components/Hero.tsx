@@ -1,8 +1,50 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 const Hero = () => {
+  const titles = [
+    "Frontend Developer",
+    "Web Developer",
+    "Application Developer",
+    "React Native Developer",
+    "UI/UX Designer"
+  ]
+
+  const [currentTitle, setCurrentTitle] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+  
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      // Current title from array
+      const fullTitle = titles[currentIndex]
+      
+      // If deleting, remove a character, else add a character
+      if (isDeleting) {
+        setCurrentTitle(prev => prev.substring(0, prev.length - 1))
+      } else {
+        setCurrentTitle(prev => fullTitle.substring(0, prev.length + 1))
+      }
+      
+      // If completed typing current title
+      if (!isDeleting && currentTitle === fullTitle) {
+        // Wait a bit then start deleting
+        setTimeout(() => setIsDeleting(true), 1500)
+      } 
+      // If deleted current title
+      else if (isDeleting && currentTitle === '') {
+        setIsDeleting(false)
+        // Move to next title (loop back if at end)
+        setCurrentIndex(prev => (prev + 1) % titles.length)
+      }
+      
+    }, isDeleting ? 50 : 100) // Type slower, delete faster
+    
+    return () => clearTimeout(timeout)
+  }, [currentTitle, currentIndex, isDeleting, titles])
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-16 px-4 bg-gradient-to-br from-white via-blue-50 to-purple-50 relative overflow-hidden">
       {/* Background Decorative Elements */}
@@ -43,9 +85,11 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="text-2xl md:text-3xl text-gray-700"
+                className="text-2xl md:text-3xl text-gray-700 h-10 flex items-center"
               >
-                Web Developer & Designer
+                <span className="mr-2">I'm a</span> 
+                <span className="text-blue-600 font-medium">{currentTitle}</span>
+                <span className="border-r-2 border-blue-600 h-8 ml-1 animate-blink"></span>
               </motion.h2>
               
               <motion.p 
@@ -54,7 +98,7 @@ const Hero = () => {
                 transition={{ delay: 0.6, duration: 0.6 }}
                 className="text-lg text-gray-600 max-w-lg"
               >
-                Crafting modern web experiences with clean design and efficient code.
+                Passionate about creating beautiful, intuitive digital experiences. I blend modern design with clean code to build responsive, accessible, and high-performance web applications that elevate brands and engage users.
               </motion.p>
               
               <motion.div 
@@ -72,7 +116,7 @@ const Hero = () => {
                   Get in Touch
                 </a>
                 <a
-                  href="https://docs.google.com/document/d/1byyEDUY3og8oRjmbm6AXoJp31ZXnJssy/edit?usp=drivesdk&ouid=117977221252992579771&rtpof=true&sd=true"
+                  href="https://docs.google.com/document/d/1ZDRK3XhBYLXgpUQGMg8m0IuanGg6JBbM/edit?usp=drivesdk&ouid=117977221252992579771&rtpof=true&sd=true"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-white text-gray-900 rounded-full border-2 border-gray-900
